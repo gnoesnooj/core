@@ -47,4 +47,17 @@ public class SingletonTest {
             //memberService1 == memberService2
         assertThat(memberService1).isSameAs(memberService2);
     }
+   
+    @Test
+    @DisplayName("스프링 컨테이너와 싱글톤")
+    void springContainer(){
+
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        MemberService memberService1 = ac.getBean("memberService", MemberService.class);
+        MemberService memberService2 = ac.getBean("memberService", MemberService.class);
+
+        assertThat(memberService1).isSameAs(memberService2);
+
+    }
 }
